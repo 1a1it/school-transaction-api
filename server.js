@@ -14,6 +14,10 @@ const PORT = process.env.PORT || 5000;
 const transactionsRouter = require("./routes/transactionRoutes");
 app.use("/transactions", transactionsRouter);
 
+// Import auth routes
+const authRoutes = require("./routes/authRoutes");
+app.use("/auth", authRoutes);
+
 
 // //testing (display all transactions)
 // app.get("/", async (req, res) => {
