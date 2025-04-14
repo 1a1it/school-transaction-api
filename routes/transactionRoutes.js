@@ -5,15 +5,40 @@ const authMiddleware = require("../middleware/auth");
 const router = express.Router();
 
 // Fetch All Transactions
-router.get("/", async (req, res) => {
-    
-    try {
-        const transactions = await TransactionTwo.find();
-        res.json(transactions);
-      } catch (err) {
-        res.status(500).json({ error: err.message });
-      }
-});
+router.get("/", async (req, res) =>  {
+  try {
+    const { status, fromDate, toDate, page = 1, limit = 10 } = req.query;
+
+    const query = {};
+
+    if (status) query.status = status;
+    if (fromDate && toDate) {
+      query.createdAt = {
+        $gte: new Date(fromDate),
+        $lte: new Date(toDate),
+      };
+    }
+
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    const total = await Transaction.countDocuments(query);
+
+    const transactions = await TransactionTwo.find(query)
+      .skip(skip)
+      .limit(parseInt(limit))
+      .sort({ createdAt: -1 }); //  newest first
+
+    res.json({
+      page: parseInt(page),
+      limit: parseInt(limit),
+      totalPages: Math.ceil(total / limit),
+      totalResults: total,
+      results: transactions,
+    });
+  } catch (err) {
+    console.error("Error fetching transactions:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});  
 
 // Fetch Transactions by School
 router.get("/school_id/:school_id", async (req, res) => {
