@@ -1,5 +1,4 @@
 const express = require("express");
-const Transaction = require("../models/transaction");
 const TransactionTwo = require("../models/transactionTwo");
 const authMiddleware = require("../middleware/auth");
 const router = express.Router();
@@ -20,12 +19,12 @@ router.get("/", async (req, res) =>  {
     }
 
     const skip = (parseInt(page) - 1) * parseInt(limit);
-    const total = await Transaction.countDocuments(query);
+    const total = await TransactionTwo.countDocuments(query);
 
     const transactions = await TransactionTwo.find(query)
       .skip(skip)
       .limit(parseInt(limit))
-      .sort({ createdAt: -1 }); //  newest first
+      .sort({ createdAt: -1 }); // newest first
 
     res.json({
       page: parseInt(page),
@@ -38,7 +37,8 @@ router.get("/", async (req, res) =>  {
     console.error("Error fetching transactions:", err);
     res.status(500).json({ message: "Server error" });
   }
-});  
+});
+
 
 // Fetch Transactions by School
 router.get("/school_id/:school_id", async (req, res) => {
