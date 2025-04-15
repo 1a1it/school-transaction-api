@@ -3,7 +3,7 @@
 This project is a backend service for managing student transactions and payments using Node.js, Express.js, and MongoDB. It supports transaction tracking, webhook integration, filtering, pagination, and JWT-based API security.
 
 
-##  Features
+#  Features
 
 -  Fetch all transactions (with filters, pagination)
 -  Fetch transactions by school
@@ -15,7 +15,7 @@ This project is a backend service for managing student transactions and payments
 -  Pagination support
 
 
-## Tech Stack
+# Tech Stack
 
 - Node.js
 - Express.js
@@ -24,7 +24,7 @@ This project is a backend service for managing student transactions and payments
 - dotenv
 
 
-##  Getting Started
+#  Getting Started
 
 
 1. Set up environment variables
@@ -34,9 +34,8 @@ Create a `.env` file and add:
 PORT=5000
 MONGODB_URI= mongodb+srv://1a1it:asdfghjkl.10@cluster0.ohm50ik.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
-## Running the Server
+# Running the Server
 
-bash
 npm run dev
 
 
@@ -44,15 +43,15 @@ Server will start on:
 http://localhost:5000
 
 
-##  API Endpoints
+#  API Endpoints
 
-###  Auth Routes
+##  Auth Routes
 
 #### POST /auth/login
 Returns a JWT token for secured access. You can hardcode or extend this for admin login.
 
 
-###  Transaction Routes
+##  Transaction Routes
 
 #### GET /transactions
 Fetch all transactions.
@@ -69,7 +68,7 @@ bash
 GET /transactions?status=Success&page=2
 
 
-#### `GET /transactions/school/:school_id`
+#### GET /transactions/school/:school_id
 Get all transactions for a specific school.
 
 
