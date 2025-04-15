@@ -39,6 +39,21 @@ router.get("/", async (req, res) =>  {
   }
 });
 
+// 🆕 Fetch transaction by collect_id
+router.get("/collect/:collect_id", async (req, res) => {
+  try {
+    const transaction = await TransactionTwo.findOne({ collect_id: req.params.collect_id });
+
+    if (!transaction) {
+      return res.status(404).json({ message: "Transaction with that collect_id not found" });
+    }
+
+    res.json(transaction);
+  } catch (err) {
+    console.error("Error fetching transaction by collect_id:", err);
+    res.status(500).json({ message: "Internal server error", error: err.message });
+  }
+});
 
 // Fetch Transactions by School
 router.get("/school_id/:school_id", async (req, res) => {
