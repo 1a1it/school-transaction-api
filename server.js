@@ -11,7 +11,9 @@ app.use(express.json());
 
 const allowedOrigins = [
   'http://localhost:5173', // Local 
-  'https://transaction-fe.vercel.app/' 
+  'https://transaction-fe.vercel.app', 
+  'https://transaction-fe-git-main-lalit-kumars-projects-79b820b2.vercel.app',
+  'https://transaction-fe-lalit-kumars-projects-79b820b2.vercel.app'
 ];
 
 app.use(cors({
