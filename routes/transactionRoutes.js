@@ -39,7 +39,7 @@ router.get("/", async (req, res) =>  {
   }
 });
 
-// 🆕 Fetch transaction by collect_id
+//  Fetch transaction by collect_id
 router.get("/collect/:collect_id", async (req, res) => {
   try {
     const transaction = await TransactionTwo.findOne({ collect_id: req.params.collect_id });
